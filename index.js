@@ -56,6 +56,14 @@ app.get("/comments/:id", (req, res) => {
   res.render("comments/show", { comment });
 });
 
+app.patch("/comments/:id", (req, res) => {
+  const { id } = req.params;
+  const newComment = req.body.comment;
+  const oldComment = comments.find((comment) => comment.id === id);
+  oldComment.comment = newComment;
+  res.redirect("/comments");
+});
+
 app.get("/tacos", (req, res) => {
   res.send("GET /tacos response");
 });
