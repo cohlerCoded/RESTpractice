@@ -10,7 +10,7 @@ app.use(methodOverride("_method"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 //fake db
-const comments = [
+let comments = [
   {
     id: uuid(),
     username: "Todd",
@@ -70,6 +70,12 @@ app.get("/comments/:id/edit", (req, res) => {
   const { id } = req.params;
   const comment = comments.find((comment) => comment.id === id);
   res.render("comments/edit", { comment });
+});
+//delete comment
+app.delete("/comments/:id", (req, res) => {
+  const { id } = req.params;
+  comments = comments.filter((comment) => comment.id !== id);
+  res.redirect("/comments");
 });
 
 app.get("/tacos", (req, res) => {

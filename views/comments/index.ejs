@@ -15,6 +15,13 @@
         <%= comment.comment %> <b> - <%= comment.username %></b>
         <a href="/comments/<%= comment.id %>"><button>Details</button></a>
         <a href="/comments/<%= comment.id %>/edit"><button>Edit</button></a>
+        <form
+          style="display: inline"
+          method="POST"
+          action="/comments/<%= comment.id %>?_method=DELETE"
+        >
+          <button>Delete</button>
+        </form>
       </li>
       <%}%>
     </ul>
